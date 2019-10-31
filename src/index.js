@@ -7,7 +7,7 @@ exports.handler = async (event, context, callback) => {
   if (url === '/') {
     callback(null, {
       statusCode: 302,
-      Location: `https://zeit.co/blog/err-sh`,
+      headers: { Location: `https://zeit.co/blog/err-sh` },
       body: null,
     });
 
@@ -54,6 +54,8 @@ exports.handler = async (event, context, callback) => {
 
   callback(null, {
     statusCode: 302,
-    Location: `https://github.com/${user}/${repo}/blob/master/errors/${code}.md`,
+    headers: {
+      Location: `https://github.com/${user}/${repo}/blob/master/errors/${code}.md`,
+    },
   });
 };

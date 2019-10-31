@@ -7,7 +7,7 @@
   "version": "1.0.0",
   "scripts": {
     "dev": "micro-dev src",
-    "build": "ncc build src/index.js -m -o dist/functions/"
+    "build": "ncc build src/index.js -m -o functions/"
   },
   "engines": {
     "node": "10.x"
