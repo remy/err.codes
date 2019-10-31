@@ -1,12 +1,14 @@
 const fetch = require('node-fetch');
 
-module.exports = async (request, response) => {
-  const { url } = request;
+module.exports = async (event, context, callback) => {
+  const { path: url } = event;
   const urlParts = url.split('/');
 
   if (url === '/') {
-    response.writeHead(302, {
+    callback(null, {
+      statusCode: 302,
       Location: `https://zeit.co/blog/err-sh`,
+      body: null,
     });
 
     response.end();
@@ -31,24 +33,27 @@ module.exports = async (request, response) => {
   }
 
   if (lookup) {
-    const res = await fetch(`https://registry.npmjs.org/${repo}/`);
-    const json = await res.json();
-    if (json.repository && json.repository.url) {
-      json.repository.url.replace(
-        /\/\/.*?\/(.+)\/(.*)(?:.git)/,
-        (all, u, r) => {
-          user = u;
-          repo = r;
-        }
-      );
+    try {
+      const res = await fetch(`https://registry.npmjs.org/${repo}/`);
+      const json = await res.json();
+      if (json.repository && json.repository.url) {
+        json.repository.url.replace(
+          /\/\/.*?\/(.+)\/(.*)(?:.git)/,
+          (all, u, r) => {
+            user = u;
+            repo = r;
+          }
+        );
+      }
+    } catch (e) {
+      return callback(e);
     }
   }
 
   // TODO map repo host to correct paths
 
-  response.writeHead(302, {
+  callback(null, {
+    statusCode: 302,
     Location: `https://github.com/${user}/${repo}/blob/master/errors/${code}.md`,
   });
-
-  response.end();
 };
