@@ -1,5 +1,16 @@
-# err.sh
+# err.codes
 
-This microservice forwards you to detailed error messages.
+This microservice for _everyone_ forwards you to detailed error messages.
 
-Example: https://err.sh/micro/path-missing
+Example: https://err.codes/micro/path-missing
+
+## URL structure
+
+```text
+https://err.codes/micro/path-missing
+                  [___] [__________]
+                    |        |
+npm package name ---/        |
+                             |
+filename.md in `errors/` --- /
+```

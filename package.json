@@ -1,19 +1,24 @@
 {
-  "name": "err-sh",
-  "version": "1.2.0",
+  "name": "err.codes",
+  "prettier": {
+    "singleQuote": true,
+    "trailingComma": "es5"
+  },
+  "version": "1.0.0",
   "scripts": {
-    "start": "micro",
-    "dev": "micro-dev"
+    "dev": "micro-dev src",
+    "build": "ncc build src/index.js -m -o dist/functions/"
   },
-  "repository": "zeit/err-sh",
+  "engines": {
+    "node": "10.x"
+  },
+  "repository": "remy/err.codes",
   "license": "MIT",
-  "now": {
-    "alias": "err.sh"
-  },
   "dependencies": {
-    "micro": "9.0.1"
+    "node-fetch": "2.6.0"
   },
   "devDependencies": {
-    "micro-dev": "1.4.0"
+    "micro-dev": "1.4.0",
+    "ncc": "0.3.6"
   }
 }
