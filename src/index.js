@@ -1,6 +1,6 @@
 const fetch = require('node-fetch');
 
-module.exports = async (event, context, callback) => {
+exports.handler = async (event, context, callback) => {
   const { path: url } = event;
   const urlParts = url.split('/');
 
