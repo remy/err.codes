@@ -18,7 +18,7 @@
     "node-fetch": "2.6.0"
   },
   "devDependencies": {
-    "micro-dev": "1.4.0",
-    "ncc": "0.3.6"
+    "@zeit/ncc": "0.20.5",
+    "micro-dev": "1.4.0"
   }
 }
